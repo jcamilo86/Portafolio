@@ -1,0 +1,254 @@
+---
+import { getCollection } from 'astro:content';
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Component Imports
+import CallToAction from '../components/CallToAction.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+// Page section components
+import ContactCTA from '../components/ContactCTA.astro';
+import Skills from '../components/Skills.astro';
+
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection('work'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+					title="Hola, soy Juan camilo"
+					tagline="Soy un desarrollador creativo  que actualmente reside en Colombia.."
+					align="start"
+				>
+					<div class="roles">
+						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
+						<Pill>
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAY5JREFUSEu9lUFywjAMRSWHmPQU6YZrkBXHKCuOUVKa9Bis4Bis0muwaU5RMGB1RMcdkbrGYYayjeyn/+UvEO78wzvfD/8P2JXDJQAVtynDJqv2M3n2lwIGIND0FgAiNfr1MLkbgABXVxUcSj23AHPuQgHUpKgNqUGLuaxPK1MHFZhFOiWLSy7SWo3weRcE0FuWG2O3rqFeAPbUkvICEqCWL/ucDwqFasMAVDTTi8MqqEAeCFnj/JaKLdnJQ31sggAp2RWyEkBYy4OnE7V8mZyZz1Jv0PalNhddeJ6f+y4Bw8roruoowNlfVnGpfc1+y9xEA3al3iJATgCtUlRbq8bd8Dm/zUu6IcKCa7PKjKIUOIBLpm/wDiCbiQb4umJIkmDOHaaDpHH5cPPyrYmztb6nKH3l50h0WmfDwYcMHT9PaZ1vTUQBuq/pO3hU8IzkN14r3RT/CZDhid2qvQActqOxU0IaW8LHbrcSytYoZd+7K+InpDEd8oARkydnzbVLg6siBtin5v//k/t0F1P7BVmN+xkJI4fuAAAAAElFTkSuQmCC"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZRJREFUSEu9lUFuwjAQRWccYtJTpBuuAStOUZVGFddglWugKgVxClbpNdg0pygk4KkGsDoE1zVIabaM583/9h8QOv6w4/7w/4B+sZ0TwOgeZQhQ7rJkKs9eKTgBcHIPgADLJtPjzgAItPhTgX5vZkBmdpwCVU5ElU8NIqayvn6Jc6+CuKgnCDTnIhXrwfYJvYBkRalp6o0d6CYAe6rAOAGEUcXNem9fI6XUmgEEOG0yvfAqkAe81pz9loqNMeP960PpBVxIPleyEgBYyoNkDhU3k3fmstQZNF3s6otmjudnf5eAOuvrtuogwNnfC+msiP2WubkBsN0AYApAFYHKFZhhO3zW77io1wg04to6SwaBCk4Am0zXxVuALn6GCQa4pmIIqijlCaM4Lm0+7H251sQxq66nKH3l+B8MLXv95FOGjp+ntM61JoIA7dfEwTttW74j8aHK2yn+FSDDE7xVbwEcw7bfT4hoiGAer6aVgwMtDKiP9oqwJUH/aHzBkcJnaw377WvqXRXBlgQWBikI7OUs6xzwDZkY9Rk/P1qtAAAAAElFTkSuQmCC"/>
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAASBJREFUSEvtVT1ygkAUfu8BC62TmBYbrxGbnIPKa1BxDSqu4VFSUZOMZWDFfc7nZB1TZISITgppgJ2d7/ctMN344hvj030JusbYKRzFc2s8zg8HDwIfyyOii4P2fyNi1jXkq3KJuwgVoUjV9v2CVUpmSrH+ZwcmlCXAhGSjxFUy79a6TVKetfVXE66wPhkB3JjnXYXDqUq1Vz8ZwbmDrtecSbOrz8F5RL6D6MkWeJ48Iq8W8QQBVSBqm7iEk1ElY1IAtt9TlrzYpf2IMkwROmDm1DnKfVy7T5PjfTAB1MWRvGFKvGLbRBunvBDRAiWfnGyT1PbufXTJPoLj/Dt9VeLVCZT4SBCI1lB+dckXvxHfG36NaCjAmH33/SePUTZ07wFaE8cZftYpCgAAAABJRU5ErkJggg=="/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAclJREFUSEu1lUFygkAQRbsHQXIK3OQaYRMPkWhYcYywMsdgRTQ5hNnoNbIJp4iAdKd6qsYaCCoW6hKHftO/f38QbvzDG9eH3oB56UZMmMiF0IFs6ZaLPpc7C3hmP8CqToExRAW6KBMkwJATU/x5t9+cAh0FSGG1p0gXQ96w68QfuMulWAPKmNEYF+a/NqwTMK+8pM8t+8jWAOibFfR1ic6NTjtkawBmpbuW4iuvmvYZoH1GgwpOWFFgv98E7LzvtkNELikkrnn6HYXKwVcZuAy53amWtoZo5Zf3Bn4WYHc1K7wSGTNQtNUFSD0wckREU3HTIADV/KaUWptixk0iCzicS4eDAGJTbQCEQORBQO3/mut3swuDADI4PciqDrU0igIgnAhQFnBwB4i4hRqDpV/Etnvmu3HKwKEMdlAHCPDOjKnctt7TFv3Rj3SjnzFmAh4EEIkOG263wJAbW54HlO4aSeV2tohN5ZktjcxCGHb+mHxqnz0ZFcCcawmQ46VXZce2+1R2/Qu7RrbobIacx+qxKy31ZqNKbSf1SlOzRKaoFJKhdsV1O8p7A8zBQ/YTTiSnrvbBad9EZz/AiyzXVT+Zl8b2xRINBfwBMVSmKAwZqFMAAAAASUVORK5CYII="/>
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAArBJREFUSEvFVcFqE1EUPfe9ZGZEXLgTFKqgK1fSjVhoFJv8gFAFaUEo6MaVdNciGFFQcK2giHXjXlyYiUgLXbhwqZsKGijYvVpnJpl35CYdfYkJtNBqVknmvXPOvffcM4I9/sge42MkQfSGY8zTRRrbcq6z0qntW/bFlBo/KxYyo8+NlJaS89IaJnYkQdhIHjsxK2TeErELhq4lNqwrUDnOYgUj89sidszQTaa1aG7bBKre5Wkzq0UniktBs70IupMCOZwzX/ArChrJmrHh1LAqhlagBLlrP25Xg6qvKoiTdVA2jA0u+GBakTXluW0TKKhe8gn0t4isFITZVLlefB8864saOYOgmX4m5ab2l5DTEB4kzEe9LIJjAAGYZyRbAncnq0ZHtjWDbq9dPkvBAcC8orgPBnLdSHDWB3AuXYVzN2DsNMEJIb7B2CW/sq6Y4lJ3sC5bg5i6HlIbFu5RN7WrwVIYJ/N6Pq1G97tCFMDlYzn4vGSjL46dWRXnD/w3gTrBgXN97ojTFyDH1U1hnDwi5EpPFZ+m1eiq3gHkaFYLy75Q3yB9BL4t9ULYSJYp8jWrhpfCOHlLyMQWwWpajc6V4+yJCCvZVHi8z22NZK3A+kPQbC9quf7C9BQCWrJz2biQD7sLJnLNmOC97ooAy8UCFvZWtxWz6HOR9pXkZGFHh/yHgd2voIPD07MaIbrJAk5DzDvt/+Cg/7LploqKwN2FSEbKJwHOAHwp5PetCg4BPAViE0ZKgOQkbqkRBq06eg+8PgavNy9S7LyIvdcD6Dxw5OXCENrKwfkVRNuOinKczQKYARBxIIt2HBWjsqgcZxsg1+1uZJGfkMXSaTz3osIu+OG24xYpiLpEbUugolbUbS16XlSo7wh9TjH1YQPui4phQbUb//2/d/JuqP8nLfoFlZqhKA3pocMAAAAASUVORK5CYII="/>
+					   </Pill>
+					</div>
+				</Hero>
+
+				<img
+					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+					width="480"
+					height="620"
+					src="/src/img/tes-juan.png"
+					
+				/>
+			</header>
+
+			<Skills />
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section class="section with-background with-cta">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Trabajos Seleccionados</h3>
+					<p>Estos son algunos de mis trabajos destacados.</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+
+				<div class="cta">
+					<CallToAction href="/work/">
+						View All
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+				</div>
+			</section>
+
+			<!-- <section class="section with-background bg-variant">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Mentions</h3>
+					<p>
+						I have been fortunate enough to recieve praise for my work in several publications. Take
+						a look below to learn more.
+					</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="small">
+						{
+							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
+								<li class="mention-card">
+									<p>{brand}</p>
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+			</section> -->
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
+	}
+
+	.hero img {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.hero img {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: '';
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background: url('/assets/backgrounds/noise.png') top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat, var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	@media (min-width: 50em) {
+		.mention-card {
+			border-radius: 1.5rem;
+			height: 9.5rem;
+		}
+	}
+</style>
