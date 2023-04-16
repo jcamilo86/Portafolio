@@ -1,14 +1,7 @@
 # Portfolio
 
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+![portfolio][![2023-04-16-15h36-36.png](https://i.postimg.cc/XqWGwtrd/2023-04-16-15h36-36.png)](https://postimg.cc/62HpKjLp)
 
 
-## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
-
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
