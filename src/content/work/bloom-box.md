@@ -11,5 +11,6 @@ tags:
   - Backend
 ---
 ## Proyecto
-Este proyecto se realizan con react, utilizando la rubrica pedida en el proyecto como crear rutas y de estados, realizar un formulario que capture los datos en el navegador  <a href="https://fluffy-rolypoly-74ec9a.netlify.app/">Pagina Restaurante</a>
+Este proyecto fue realizado utilizando React. Durante el desarrollo, se enfocó en la creación de rutas y estados para garantizar un flujo de trabajo eficiente. También se implementó un formulario que captura datos en el navegador.
+<a href="https://fluffy-rolypoly-74ec9a.netlify.app">Pagina Restaurante</a>
 

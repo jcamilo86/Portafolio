@@ -12,5 +12,7 @@ tags:
 ---
 ## Proyecto
 
-El formulario CRUD consistía en capturar los datos y enlistarlos y modificarlos a treves de una aplicación, en este se uso JavaScript para poder dar toda esta lógica  <a href="https://jcamilo86.github.io/crud_entregra/">Crud</a>
+El formulario CRUD es una herramienta utilizada en aplicaciones web para capturar, enlistar y modificar datos. En este formulario, se utiliza JavaScript para darle lógica a la aplicación y mejorar la experiencia del usuario.
+
+La captura de datos es una de las funciones principales del formulario CRUD. Los usuarios pueden ingresar información en los campos correspondientes y, a través de JavaScript, se validan los datos. <a href="https://jcamilo86.github.io/crud_entregra/">Crud</a>
 
